@@ -238,7 +238,7 @@ stock AdminReportAnswer(const playerid, const idx, const message[])
     format(
             string, 
             sizeof(string),
-            "%s[%d] ответил на Ваш репорт: %s",
+            "%s[%d] РѕС‚РІРµС‚РёР» РЅР° Р’Р°С€ СЂРµРїРѕСЂС‚: %s",
             player_name,
             playerid,
             message
@@ -324,7 +324,7 @@ public OnPlayerDisconnect(playerid, reason)
 DialogCreate:D_ADMIN_REPORT_LIST(playerid) 
 {
     new 
-        string[(18 + (- 2 + MAX_PLAYER_NAME) + (- 2 + 3) + (- 2 + 11)) * MAX_ADMIN_REPORT_COUNT + 1] = "Игрок\t\tВремя\n",
+        string[(18 + (- 2 + MAX_PLAYER_NAME) + (- 2 + 3) + (- 2 + 11)) * MAX_ADMIN_REPORT_COUNT + 1] = "РРіСЂРѕРє\t\tР’СЂРµРјСЏ\n",
         player_name[MAX_PLAYER_NAME + 1],
         id,
         time,
@@ -345,7 +345,7 @@ DialogCreate:D_ADMIN_REPORT_LIST(playerid)
         format(
                 string, 
                 sizeof string, 
-                "%s%s[%d]\t\t%d мин\n",
+                "%s%s[%d]\t\t%d РјРёРЅ\n",
                 string,
                 player_name,
                 id,
@@ -357,9 +357,9 @@ DialogCreate:D_ADMIN_REPORT_LIST(playerid)
             playerid, 
             Dialog:D_ADMIN_REPORT_LIST, 
             DIALOG_STYLE_TABLIST_HEADERS,
-            !"{FFFFFF}Список репортов",
+            !"{FFFFFF}РЎРїРёСЃРѕРє СЂРµРїРѕСЂС‚РѕРІ",
             string,
-            !"Выбрать", !"Закрыть"
+            !"Р’С‹Р±СЂР°С‚СЊ", !"Р—Р°РєСЂС‹С‚СЊ"
     );
 }
 
@@ -372,7 +372,7 @@ DialogResponse:D_ADMIN_REPORT_LIST(playerid, response, listitem, inputtext[])
     new slot = g_player_admin_report[playerid][PAR_LISTITEM][listitem];
 
     if (!IsAdminReportEmpty(slot)) {
-        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Данный репорт был удалён из списка.");
+        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Р”Р°РЅРЅС‹Р№ СЂРµРїРѕСЂС‚ Р±С‹Р» СѓРґР°Р»С‘РЅ РёР· СЃРїРёСЃРєР°.");
     }
 
     SetPVarInt(playerid, pVar__AdminReport_IDX, slot);
@@ -396,9 +396,9 @@ DialogCreate:D_ADMIN_REPORT_INFO(playerid)
     format(
             string, 
             sizeof string, 
-            "{FFFFF}Репорт от: %s[%d]\n\
-            Время: %d мин.\n\
-            Текст: %s",
+            "{FFFFF}Р РµРїРѕСЂС‚ РѕС‚: %s[%d]\n\
+            Р’СЂРµРјСЏ: %d РјРёРЅ.\n\
+            РўРµРєСЃС‚: %s",
             player_name,
             id,
             (gettime() - time) / 60,
@@ -409,9 +409,9 @@ DialogCreate:D_ADMIN_REPORT_INFO(playerid)
             playerid, 
             Dialog:D_ADMIN_REPORT_INFO,  
             DIALOG_STYLE_MSGBOX,
-            !"{FFFFFF}Информация о репорте",
+            !"{FFFFFF}РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЂРµРїРѕСЂС‚Рµ",
             string,
-            !"Далее", !"Назад"
+            !"Р”Р°Р»РµРµ", !"РќР°Р·Р°Рґ"
     );
 }
 
@@ -438,9 +438,9 @@ DialogCreate:D_ADMIN_REPORT_MENU(playerid)
             Dialog:D_ADMIN_REPORT_MENU,  
             DIALOG_STYLE_LIST,
             " ",
-            "Ответить\n\
-            Удалить",
-            !"Далее", !"Закрыть"
+            "РћС‚РІРµС‚РёС‚СЊ\n\
+            РЈРґР°Р»РёС‚СЊ",
+            !"Р”Р°Р»РµРµ", !"Р—Р°РєСЂС‹С‚СЊ"
     );
 }
 
@@ -462,7 +462,7 @@ DialogResponse:D_ADMIN_REPORT_MENU(playerid, response, listitem, inputtext[])
     DeletePVar(playerid, pVar__AdminReport_IDX);
     
     if (!IsAdminReportEmpty(idx)) {
-        return SendClientMessage(playerid, -1, !"Выбранный репорт был удалён.");
+        return SendClientMessage(playerid, -1, !"Р’С‹Р±СЂР°РЅРЅС‹Р№ СЂРµРїРѕСЂС‚ Р±С‹Р» СѓРґР°Р»С‘РЅ.");
     }
 
     switch (listitem) {
@@ -490,7 +490,7 @@ cmd:send_report(playerid, params[])
     new free_idx = Iter_Free(g_admin_report_iterator);
 
     if (free_idx == ITER_NONE) {
-        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Cписок репортов переполнен.");
+        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"CРїРёСЃРѕРє СЂРµРїРѕСЂС‚РѕРІ РїРµСЂРµРїРѕР»РЅРµРЅ.");
     }
 
     if (IsAdminReportEmpty(free_idx)) {
@@ -498,11 +498,11 @@ cmd:send_report(playerid, params[])
     }
 
     if (GetPlayerAdminReportDataInt(playerid, PAR_DELAY) >= gettime()) {
-        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Отправлять репорт можно раз в 1 минуту.");
+        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"РћС‚РїСЂР°РІР»СЏС‚СЊ СЂРµРїРѕСЂС‚ РјРѕР¶РЅРѕ СЂР°Р· РІ 1 РјРёРЅСѓС‚Сѓ.");
     }
 
     if (isnull(params)) {
-        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Используйте: /send_report [сообщение]");
+        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"РСЃРїРѕР»СЊР·СѓР№С‚Рµ: /send_report [СЃРѕРѕР±С‰РµРЅРёРµ]");
     }
 
     new 
@@ -515,7 +515,7 @@ cmd:send_report(playerid, params[])
     format(
             string, 
             sizeof string, 
-            "Репорт от игрока %s[%d]: %s",
+            "Р РµРїРѕСЂС‚ РѕС‚ РёРіСЂРѕРєР° %s[%d]: %s",
             player_name,
             playerid,
             params
@@ -525,7 +525,7 @@ cmd:send_report(playerid, params[])
     AdminReportCreate(free_idx, playerid, unix_time, params);
     SetPlayerAdminReportDataInt(playerid, PAR_DELAY, unix_time + MAX_ADMIN_REPORT_MESSAGE_DELAY);
 
-    return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Ваш репорт успешно добавлен в очередь.");
+    return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Р’Р°С€ СЂРµРїРѕСЂС‚ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ РІ РѕС‡РµСЂРµРґСЊ.");
 }
 
 cmd:show_reports(playerid)
@@ -535,7 +535,7 @@ cmd:show_reports(playerid)
     }
 
     if (!Iter_Count(g_admin_report_iterator)) {
-        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"Список репортов пуст.");
+        return SendClientMessage(playerid, ADMIN_REPORT_HEX_COLOR, !"РЎРїРёСЃРѕРє СЂРµРїРѕСЂС‚РѕРІ РїСѓСЃС‚.");
     }
 
     return Dialog_Show(playerid, Dialog:D_ADMIN_REPORT_LIST);
