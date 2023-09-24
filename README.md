@@ -1,1 +1,1 @@
-# admin_report
+# QuickMessage - быстрые сообщения 
