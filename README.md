@@ -11,3 +11,8 @@
 /* В OnGameModeInit после подключения к БД. */
 QM_SetMySQLConnectionHandle(/* ID соединения с БД */)
 ```
+```pawn
+/* После загрузки данных игрового аккаунта. */
+QM_SetPlayerUserID(playerid, /* Переменная хранящая ID аккаунта в таблице. */);
+QM_LoadPlayer(playerid);
+```
