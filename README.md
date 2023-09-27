@@ -8,11 +8,14 @@
 ```
 - В используемом скрипте необходимо объявить следующие функции:
 ```pawn
-/* В OnGameModeInit после подключения к БД. */
+/* В public OnGameModeInit() после подключения к БД. */
 QM_SetMySQLConnectionHandle(/* ID соединения с БД */)
 ```
 ```pawn
-/* После загрузки данных игрового аккаунта. */
+/* В public OnPlayerSpawn(playerid) */
 QM_SetPlayerUserID(playerid, /* Переменная хранящая ID аккаунта в таблице. */);
 QM_LoadPlayer(playerid);
 ```
+- В директиве QM_TABLE_ACCOUNTS:
+
+Укажите название своей основной таблицы с аккаунтами игроков, если она отличается от стандартной.
