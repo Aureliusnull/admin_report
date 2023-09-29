@@ -7,7 +7,6 @@
 #include <a_mysql>
 #include <foreach>
 #include <Pawn.CMD>
-// #include <dc_cmd>
 #include <quick_message>
 ```
 - В используемом скрипте необходимо объявить следующие функции/директивы (см. ниже):
