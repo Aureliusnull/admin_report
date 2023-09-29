@@ -22,6 +22,5 @@ QM_SetMySQLConnectionHandle(/* ID соединения с БД */)
 ```pawn
 /* Добавить в public OnPlayerSpawn(playerid) */
 QM_SetPlayerUserID(playerid, /* Переменная содержащая ID аккаунта в таблице. */);
-QM_SetPlayerFactionName(playerid, /* Массив содержащий наименования организаций + переменная содержащая ID организации */);
 QM_LoadPlayer(playerid);
 ```
