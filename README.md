@@ -15,14 +15,13 @@
 /* Изменить наименование SQL таблицы с игровыми аккаунтами, если оно отличается от стандартного. */
 #define QM_TABLE_ACCOUNTS "accounts"
 ```
-
-
 ```pawn
-/* В public OnGameModeInit() после подключения к БД. */
+/* Добавить в public OnGameModeInit() после подключения к БД. */
 QM_SetMySQLConnectionHandle(/* ID соединения с БД */)
 ```
 ```pawn
-/* В public OnPlayerSpawn(playerid) */
-QM_SetPlayerUserID(playerid, /* Переменная хранящая ID аккаунта в таблице. */);
+/* Добавить в public OnPlayerSpawn(playerid) */
+QM_SetPlayerUserID(playerid, /* Переменная содержащая ID аккаунта в таблице. */);
+QM_SetPlayerFactionName(playerid, /* Массив содержащий наименования организаций + переменная содержащая ID организации */);
 QM_LoadPlayer(playerid);
 ```
