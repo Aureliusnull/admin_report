@@ -24,3 +24,6 @@ QM_SetMySQLConnectionHandle(/* ID соединения с БД */)
 QM_SetPlayerUserID(playerid, /* Переменная содержащая ID аккаунта в таблице. */);
 QM_LoadPlayer(playerid);
 ```
+## Использование:
+- /qm_menu - открыть меню быстрых сообщений.
+- /qm_start - отправить быстрое сообщение.
